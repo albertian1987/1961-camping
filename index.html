@@ -489,6 +489,8 @@
       padding: 28px 24px 40px;
       width: 100%;
       max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
       animation: slideUp 0.3s ease;
     }
     @keyframes slideUp {
@@ -1032,7 +1034,14 @@ function toggleDatePicker() {
   dpOpen = !dpOpen;
   document.getElementById('datePickerPanel').style.display = dpOpen ? 'block' : 'none';
   document.getElementById('dpArrow').classList.toggle('open', dpOpen);
-  if (dpOpen) renderDpCalendar();
+  if (dpOpen) {
+    renderDpCalendar();
+    setTimeout(() => {
+      const modal = document.querySelector('.modal');
+      const panel = document.getElementById('datePickerPanel');
+      if (modal && panel) modal.scrollTop = panel.offsetTop - 12;
+    }, 80);
+  }
 }
 
 async function dpChangeMonth(dir) {
