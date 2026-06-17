@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1961 星空露營區｜苗栗卓蘭</title>
+  <script>
+    // 偵測 LINE 內建瀏覽器，強制用 Safari 開啟
+    (function(){
+      var ua = navigator.userAgent || '';
+      if (ua.indexOf('Line/') > -1 && location.search.indexOf('openExternalBrowser') === -1) {
+        location.replace(location.href + (location.search ? '&' : '?') + 'openExternalBrowser=1');
+      }
+    })();
+  </script>
   <style>
     :root {
       --night: #0a0e1a;
