@@ -191,6 +191,26 @@
     }
     .btn-line svg { width: 24px; height: 24px; fill: white; }
 
+    .btn-book {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #000;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(245,200,66,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-book:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(245,200,66,0.5);
+    }
+
     .hero-note {
       margin-top: 14px;
       font-size: 12px;
@@ -576,6 +596,108 @@
     .success-msg h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
     .success-msg p { font-size: 14px; color: var(--muted); }
 
+    /* ── 日期選擇器 ── */
+    .date-picker-btn {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+    .date-picker-btn.has-date { color: var(--text); border-color: rgba(74,222,128,0.4); }
+    .date-picker-btn:focus { outline: none; border-color: rgba(245,200,66,0.5); }
+    .dp-arrow { font-size: 11px; color: var(--muted); transition: transform 0.2s; }
+    .dp-arrow.open { transform: rotate(180deg); }
+
+    .date-picker-panel {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .dp-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .dp-nav button {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .dp-nav span { font-size: 13px; font-weight: 700; }
+
+    .dp-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 3px;
+    }
+    .dp-weekdays span {
+      text-align: center;
+      font-size: 10px;
+      color: var(--muted);
+      padding: 3px 0;
+    }
+
+    .dp-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+
+    .dp-cell {
+      min-height: 44px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4px 2px 2px;
+    }
+    .dp-day { font-size: 12px; font-weight: 700; line-height: 1; }
+    .dp-tents { font-size: 8px; color: #4ade80; margin-top: 3px; text-align: center; line-height: 1.2; }
+    .dp-full-lbl { font-size: 8px; color: var(--muted); margin-top: 3px; }
+
+    .dp-avail {
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.25);
+      cursor: pointer;
+    }
+    .dp-avail:hover { background: rgba(74,222,128,0.22); }
+    .dp-full { background: rgba(148,163,184,0.05); opacity: 0.4; }
+    .dp-past { opacity: 0.25; }
+
+    .dp-cell.dp-selected {
+      background: rgba(245,200,66,0.18) !important;
+      border: 1px solid rgba(245,200,66,0.6) !important;
+    }
+    .dp-cell.dp-selected .dp-day { color: var(--gold); }
+
+    .dp-selected-info {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: rgba(74,222,128,0.06);
+      border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 8px;
+    }
+    .dp-sel-date { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .dp-sel-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
     /* ── Footer ── */
     footer {
       position: relative;
@@ -604,13 +726,10 @@
     龍眼樹下的晨光、<br>
     屬於家人的那一片星空。
   </p>
-  <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" class="btn-line">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
-    </svg>
-    LINE 立即預訂
-  </a>
-  <p class="hero-note">點擊後開啟 LINE，告訴我們你的日期就好</p>
+  <button class="btn-book" onclick="openDirectModal()">
+    ⛺ 立即預訂
+  </button>
+  <p class="hero-note">填寫日期與帳數，我們 24 小時內確認</p>
 </section>
 
 <!-- 特色 -->
@@ -795,12 +914,9 @@
     <span class="tag">現在就出發</span>
     <h2>下一個週末，<br>在星空下陪著家人</h2>
     <p>名額有限，包區制一次只接一組客人</p>
-    <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" class="btn-line">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.630 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
-      </svg>
-      LINE 立即預訂
-    </a>
+    <button class="btn-book" onclick="openDirectModal()">
+      ⛺ 立即預訂
+    </button>
     <p class="hero-note">24 小時內回覆 · 免費諮詢日期</p>
   </div>
 </section>
@@ -822,6 +938,26 @@
       <div class="form-date-info" id="formDateInfo">
         <div class="di-date" id="formDateText">—</div>
         <div class="di-price" id="formPriceText">選擇帳數後顯示費用</div>
+      </div>
+
+      <div class="form-group" id="dateInputGroup" style="display:none">
+        <label>希望入住日期</label>
+        <button type="button" class="date-picker-btn" id="datePickerBtn" onclick="toggleDatePicker()">
+          <span id="datePickerLabel">📅 點擊選擇日期</span>
+          <span class="dp-arrow" id="dpArrow">▾</span>
+        </button>
+        <div class="date-picker-panel" id="datePickerPanel" style="display:none">
+          <div class="dp-nav">
+            <button type="button" onclick="dpChangeMonth(-1)">‹</button>
+            <span id="dpMonthLabel">—</span>
+            <button type="button" onclick="dpChangeMonth(1)">›</button>
+          </div>
+          <div class="dp-weekdays">
+            <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+          </div>
+          <div class="dp-grid" id="dpGrid"></div>
+          <div class="dp-selected-info" id="dpSelectedInfo" style="display:none"></div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -867,7 +1003,7 @@
 
 <script>
 // ── 設定 ────────────────────────────────────────────────
-const API_URL = 'https://script.google.com/macros/s/AKfycbyXrSkZYW68DKmubfUhqh_Rf5Lv7_vgZUD4sxzXeHRHW6_7l7sfoHCZVp3BecueGr-I/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwbSLw8gcYjj42sUN7FUCONK0nsbazGJZ5pvtuoN5OjJtGq-MDBNuyTFhJ4uTyIMOKI/exec';
 
 // ── JSONP（解決本機 file:// CORS 問題）─────────────────
 function jsonpFetch(url) {
@@ -886,6 +1022,119 @@ let curYear  = 2026;
 let selCheckIn  = '';
 let selCheckOut = '';
 let selSource   = '個人';
+
+let dpYear  = new Date().getFullYear();
+let dpMonth = new Date().getMonth() + 1;
+let dpOpen  = false;
+const slotsCache = {};
+
+function toggleDatePicker() {
+  dpOpen = !dpOpen;
+  document.getElementById('datePickerPanel').style.display = dpOpen ? 'block' : 'none';
+  document.getElementById('dpArrow').classList.toggle('open', dpOpen);
+  if (dpOpen) renderDpCalendar();
+}
+
+async function dpChangeMonth(dir) {
+  dpMonth += dir;
+  if (dpMonth > 12) { dpMonth = 1; dpYear++; }
+  if (dpMonth < 1)  { dpMonth = 12; dpYear--; }
+  renderDpCalendar();
+}
+
+async function renderDpCalendar() {
+  document.getElementById('dpMonthLabel').textContent = `${dpYear} 年 ${dpMonth} 月`;
+  const grid = document.getElementById('dpGrid');
+  grid.innerHTML = '<div style="grid-column:span 7;text-align:center;padding:16px;color:var(--muted);font-size:12px">⏳ 載入中...</div>';
+
+  const key = `${dpYear}-${dpMonth}`;
+  if (!slotsCache[key]) {
+    try {
+      const data = await jsonpFetch(`${API_URL}?action=availability&month=${dpMonth}&year=${dpYear}`);
+      slotsCache[key] = (data.success && data.slots) ? data.slots : [];
+    } catch(e) {
+      slotsCache[key] = [];
+    }
+  }
+  renderDpGrid();
+}
+
+function renderDpGrid() {
+  const grid = document.getElementById('dpGrid');
+  const today = new Date(); today.setHours(0,0,0,0);
+  const key = `${dpYear}-${dpMonth}`;
+  const slots = slotsCache[key] || [];
+  const slotMap = {};
+  slots.forEach(s => { if (s.checkIn) slotMap[s.checkIn] = s; });
+
+  const firstDow = new Date(dpYear, dpMonth - 1, 1).getDay();
+  const daysInMonth = new Date(dpYear, dpMonth, 0).getDate();
+
+  let html = '';
+  for (let i = 0; i < firstDow; i++) html += '<div class="dp-cell"></div>';
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateObj = new Date(dpYear, dpMonth - 1, d);
+    const dateStr = `${dpYear}-${String(dpMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const slot = slotMap[dateStr];
+    const isPast = dateObj < today;
+
+    let cls = 'dp-cell';
+    let extra = '';
+
+    if (slot && slot.checkIn === selCheckIn) cls += ' dp-selected';
+
+    if (isPast) {
+      cls += ' dp-past';
+    } else if (slot && slot.available) {
+      cls += ' dp-avail';
+      const t = [];
+      if (slot.can2) t.push('2');
+      if (slot.can3) t.push('3');
+      if (slot.can4) t.push('4');
+      if (t.length) extra = `<div class="dp-tents">${t.join('·')}帳</div>`;
+    } else if (slot && !slot.available) {
+      cls += ' dp-full';
+      extra = '<div class="dp-full-lbl">客滿</div>';
+    }
+
+    const onclick = (slot && slot.available && !isPast)
+      ? `onclick="selectDpDate('${slot.checkIn}','${slot.checkOut}')"`
+      : '';
+
+    html += `<div class="${cls}" ${onclick}><span class="dp-day">${d}</span>${extra}</div>`;
+  }
+
+  grid.innerHTML = html;
+}
+
+function selectDpDate(ci, co) {
+  selCheckIn  = ci;
+  selCheckOut = co;
+  const ciLabel = formatDate(ci);
+  const coLabel = formatDate(co);
+
+  document.getElementById('datePickerLabel').textContent = `📅 ${ciLabel} 入營`;
+  document.getElementById('datePickerBtn').classList.add('has-date');
+  document.getElementById('formDateText').textContent = `📅 ${ciLabel} 入營 → ${coLabel} 離營`;
+
+  const key = `${dpYear}-${dpMonth}`;
+  const slot = (slotsCache[key] || []).find(s => s.checkIn === ci);
+  if (slot) {
+    const badges = [];
+    if (slot.can2) badges.push('<span class="badge badge-green">2帳 可訂</span>');
+    if (slot.can3) badges.push('<span class="badge badge-green">3帳 可訂</span>');
+    if (slot.can4) badges.push('<span class="badge badge-green">4帳 可訂</span>');
+    const info = document.getElementById('dpSelectedInfo');
+    info.innerHTML = `<div class="dp-sel-date">✅ ${ciLabel} 入營 → ${coLabel} 離營</div><div class="dp-sel-badges">${badges.join('')}</div>`;
+    info.style.display = 'block';
+  }
+
+  dpOpen = false;
+  document.getElementById('datePickerPanel').style.display = 'none';
+  document.getElementById('dpArrow').classList.remove('open');
+  renderDpGrid();
+}
 
 // ── 月份導航 ──────────────────────────────────────────────
 function changeMonth(dir) {
@@ -968,6 +1217,29 @@ function formatDate(str) {
 }
 
 // ── 預訂 Modal ────────────────────────────────────────────
+function openDirectModal() {
+  selCheckIn  = '';
+  selCheckOut = '';
+  dpOpen = false;
+  dpYear  = new Date().getFullYear();
+  dpMonth = new Date().getMonth() + 1;
+  document.getElementById('formDateText').textContent = '📅 請選擇希望入住日期';
+  document.getElementById('formPriceText').textContent = '選擇帳數後顯示費用';
+  document.getElementById('f_tents').value = '';
+  document.getElementById('f_name').value  = '';
+  document.getElementById('f_phone').value = '';
+  document.getElementById('datePickerBtn').classList.remove('has-date');
+  document.getElementById('datePickerLabel').textContent = '📅 點擊選擇日期';
+  document.getElementById('datePickerPanel').style.display = 'none';
+  document.getElementById('dpArrow').classList.remove('open');
+  document.getElementById('dpSelectedInfo').style.display = 'none';
+  document.getElementById('dpGrid').innerHTML = '';
+  document.getElementById('dateInputGroup').style.display = 'block';
+  document.getElementById('formView').style.display   = 'block';
+  document.getElementById('successView').style.display = 'none';
+  document.getElementById('bookingModal').classList.add('open');
+}
+
 function openModal(ci, co, ciLabel, coLabel) {
   selCheckIn  = ci;
   selCheckOut = co;
@@ -976,6 +1248,7 @@ function openModal(ci, co, ciLabel, coLabel) {
   document.getElementById('f_tents').value = '';
   document.getElementById('f_name').value  = '';
   document.getElementById('f_phone').value = '';
+  document.getElementById('dateInputGroup').style.display = 'none';
   document.getElementById('formView').style.display   = 'block';
   document.getElementById('successView').style.display = 'none';
   document.getElementById('bookingModal').classList.add('open');
@@ -1006,6 +1279,10 @@ async function submitBooking() {
 
   if (!tents || !name || !phone) {
     alert('請填寫帳數、姓名和手機號碼');
+    return;
+  }
+  if (!selCheckIn) {
+    alert('請選擇希望入住日期');
     return;
   }
 
